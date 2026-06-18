@@ -102,6 +102,39 @@ footer{text-align:center;color:#9aa3b0;font-size:13px;margin-top:50px}
 <thead><tr><th>회차</th><th>날짜</th><th>시간대</th><th>플친</th><th>쇼호스트</th><th>상품구성</th><th class="num">인크리멘탈</th><th>비고</th></tr></thead>
 <tbody><tr><td>1회</td><td>4/30</td><td>야간 21시</td><td>미상</td><td>미상</td><td>미상</td><td class="num up">+635만</td><td></td></tr><tr><td>2회</td><td>5/26</td><td>야간 21시</td><td>미상</td><td>미상</td><td>미상</td><td class="num up">+837만</td><td></td></tr><tr><td>3회</td><td>6/1</td><td>야간 21시</td><td>미상</td><td>미상</td><td>미상</td><td class="num up">+825만</td><td></td></tr><tr><td>4회</td><td>6/8</td><td>야간 21시</td><td>다음날(실수)</td><td>미상</td><td>미상</td><td class="num up">+733만</td><td>루피 대량취소 517만 제외 정정</td></tr><tr class="hl"><td>5회</td><td>6/15</td><td>오전 10~11시</td><td>당일 발송</td><td>미상</td><td>미상</td><td class="num up">+2,484만</td><td>오전+플친 동시 변경→교란</td></tr></tbody></table></div>
 
+<h2>요인별 가설 & 관찰 지표 (유입 vs 전환 분리)</h2>
+<p class="lead">(a)방문자 (b)동접 (c)알림설정은 "유입 지표". 매출·전환율은 "전환 지표". 둘을 나눠 봐야 "많이 온 것"과 "잘 산 것"을 구분할 수 있음(외부 체리피커는 유입만 올리고 전환율은 떨굼).</p>
+<div class="tbl-scroll"><table>
+<thead><tr><th>요인</th><th>가설</th><th>유입 지표 (a·b·c)</th><th>전환 지표</th></tr></thead>
+<tbody>
+<tr><td><b>ㄱ. 시간대</b></td><td>오전이 야간보다 유입/전환에 유리한가</td><td>방문자·동접·신규알림</td><td>전환율, 인크리멘탈 매출</td></tr>
+<tr><td><b>ㄴ. 플친</b></td><td>플친이 신규 유입·매출을 끌어올리는가</td><td>신규알림·방문자 증가폭</td><td>인크리멘탈 매출, 플친 대비 ROI</td></tr>
+<tr><td><b>ㄷ. 호스트·내용</b></td><td>퀄리티가 높으면 체류·전환이 오르는가</td><td>(정성 평가)</td><td>전환율, 평균 체류</td></tr>
+<tr><td><b>ㄹ. 제품 구성</b></td><td>구성에 따라 전환율이 달라지는가</td><td>—</td><td>구성별 전환율 리스팅</td></tr>
+</tbody></table></div>
+<div class="note" style="margin-top:12px"><b>핵심 판별:</b> 유입(a·b·c)과 전환이 같이 오르면 → 진짜 효과. 유입만 오르고 전환율 떨어지면 → 허수(외부 트래픽/체리피커). 7월 토스 이벤트가 딱 이 케이스가 될 수 있음.</div>
+
+<h2>"4개를 한 번에 바꾸면 어떻게 하나로 정의하나" — 해법</h2>
+<div class="note">
+한 회차로는 못 가린다(6/15가 4개 다 바뀐 상태라 단독 해석 불가). 대신:
+<ul>
+<li><b>회차마다 1개씩 격리</b> — 통제 쉬운 ㄱ·ㄴ(시간대·플친)부터. 6/15와 한 변수만 다르게 돌려 그 변수 효과를 본다.</li>
+<li><b>통제 못 하는 ㄷ·ㄹ(호스트·제품)은 기록 후 그룹비교</b> — 회차 쌓이면 "호스트별·구성별 평균 전환율"로 사후 비교.</li>
+<li><b>지표는 항상 유입/전환으로 쪼개서</b> — "왜 매출이 올랐나"를 유입 증가 때문인지, 전환율 개선 때문인지로 분해.</li>
+</ul>
+즉 "한 번에 정의"가 아니라 "회차를 거쳐 좁혀간다"가 현실적인 답.
+</div>
+
+<h2>역할 분담 (R&R) — 제안</h2>
+<div class="tbl-scroll"><table>
+<thead><tr><th>역할</th><th>담당</th><th>내용</th></tr></thead>
+<tbody>
+<tr><td>액션 실행</td><td>동규·태훈 (협의)</td><td>회차별 테스트 조건 세팅(시간대·플친·구성), 라이브 운영, 기록 항목 입력</td></tr>
+<tr><td>측정·리포트</td><td>자동화(/쇼라분석)</td><td>매 회차 인크리멘탈·채널·트래픽·ROAS 자동 산출 → 실험 로그에 누적</td></tr>
+<tr><td>판단·드라이브</td><td>경완</td><td>다음 회차 테스트 변수 결정, 데이터 해석, 의사결정</td></tr>
+</tbody></table></div>
+<div class="note" style="margin-top:12px">액션 자체는 어렵지 않으나 분석·드라이브 공수가 큼 → 측정은 자동화로 덜고, 사람은 "이번엔 뭘 격리할지" 결정과 해석에 집중.</div>
+
 <h2>다음 테스트 제안 (6/15 교란 풀기)</h2>
 <div class="tbl-scroll"><table>
 <thead><tr><th>순서</th><th>조건</th><th>고정할 것</th><th>알 수 있는 것</th></tr></thead>
