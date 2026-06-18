@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>쇼핑라이브 그로스해킹 실험 로드맵</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;background:#f4f6f9;color:#1f2733;line-height:1.6;padding:0 0 80px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{background:linear-gradient(135deg,#03c75a 0%,#02b350 60%,#00a046 100%);color:#fff;padding:50px 0 42px;margin-bottom:34px;box-shadow:0 6px 24px rgba(3,199,90,.25)}
+header .wrap h1{font-size:28px;font-weight:800;letter-spacing:-.5px}
+header .wrap p{opacity:.95;margin-top:8px;font-size:15px}
+h2{font-size:21px;font-weight:700;margin:42px 0 16px;padding-left:12px;border-left:4px solid #03c75a;color:#16202c}
+.lead{font-size:14px;color:#5a6675;margin:-6px 0 14px}
+.principle{background:#eafaf0;border:1px solid #b8ebcb;border-radius:14px;padding:22px 26px}
+.principle h3{color:#0a9b4a;font-size:17px;margin-bottom:10px}
+.principle p{font-size:14.5px;color:#374251}
+.principle b{color:#0a7d3c}
+.factor{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.fcard{background:#fff;border:1px solid #e4e8ef;border-radius:14px;padding:18px;box-shadow:0 2px 8px rgba(20,30,50,.04)}
+.fcard .n{font-size:12px;font-weight:700;color:#0a9b4a;background:#e7f8ee;display:inline-block;padding:2px 9px;border-radius:20px;margin-bottom:8px}
+.fcard .t{font-size:17px;font-weight:800;color:#16202c}
+.fcard .d{font-size:12.5px;color:#6b7685;margin-top:4px}
+.fcard .pri{font-size:12px;font-weight:700;margin-top:8px}
+.pri.hi{color:#0a9b4a} .pri.lo{color:#c79a00}
+table{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(20,30,50,.04)}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid #eef1f5}
+th{background:#f0f3f8;color:#5a6675;font-weight:600;font-size:12.5px}
+td.num{text-align:right;font-variant-numeric:tabular-nums} .up{color:#0a9b4a;font-weight:700}
+tr.hl{background:#eafaf0}
+.note{background:#fff;border:1px solid #e4e8ef;border-radius:12px;padding:18px 22px;font-size:14px;color:#4a5562;box-shadow:0 2px 8px rgba(20,30,50,.04)}
+.note b{color:#1f2733} ul{margin:8px 0 0 20px}li{margin:6px 0}
+.next{background:#eef4ff;border:1px solid #c5d8f7;border-radius:12px;padding:18px 22px;font-size:14px;color:#33415a}
+.next b{color:#1c3a6e}
+.tbl-scroll{overflow-x:auto;border-radius:12px}
+footer{text-align:center;color:#9aa3b0;font-size:13px;margin-top:50px}
+@media(max-width:720px){.factor{grid-template-columns:1fr 1fr}}
+</style></head>
+<body>
+<header><div class="wrap">
+<h1>쇼핑라이브 그로스해킹 실험 로드맵</h1>
+<p>4가지 요인을 하나씩 테스트해 매출 동인을 찾는다 — 회차마다 누적 갱신</p>
+</div></header>
+<div class="wrap">
+
+<div class="principle">
+<h3>실험 원칙</h3>
+<p><b>① 한 번에 한 가지만 바꾼다.</b> 라이브가 월 2~4회뿐이라 변수를 섞으면 뭐가 효과인지 못 가림(5회차 6/15가 오전+플친 동시 변경으로 교란된 게 반면교사).<br>
+<b>② 같은 잣대로 측정.</b> KPI는 인크리멘탈 매출(평소=라이브 안 한 날 평균 대비 순증). `/쇼라분석`으로 매 회차 자동 산출.<br>
+<b>③ 방향성 위주.</b> 표본이 작아 통계적 유의성보다 추세. 같은 조건 2~3회 반복해 확인.</p>
+</div>
+
+<h2>테스트할 4요인 & 우선순위</h2>
+<div class="factor">
+<div class="fcard"><span class="n">1순위</span><div class="t">카카오 플친</div><div class="d">보냄 vs 안 보냄</div><div class="pri hi">통제 쉬움 (on/off)</div></div>
+<div class="fcard"><span class="n">2순위</span><div class="t">시간대</div><div class="d">오전 vs 야간 (플친 고정)</div><div class="pri hi">통제 쉬움</div></div>
+<div class="fcard"><span class="n">3순위</span><div class="t">쇼호스트</div><div class="d">A vs B, 조건 고정</div><div class="pri lo">통제 어려움</div></div>
+<div class="fcard"><span class="n">3순위</span><div class="t">상품 구성</div><div class="d">단일 vs 묶음·미끼상품</div><div class="pri lo">통제 어려움</div></div>
+</div>
+<div class="note" style="margin-top:14px">플친·시간대를 먼저 하는 이유: 켜고 끄기만 하면 돼 통제가 깔끔함. 6/15에 엉킨 이 둘부터 풀어야 나머지 해석도 정확해짐. 호스트·상품은 매 회차 자연히 바뀌어 A/B가 어려우므로, 회차가 쌓이면 <b>사후적으로 "호스트별·상품별 인크리멘탈 평균"</b>을 비교하는 방식이 현실적.</div>
+
+<h2>실험 로그 (회차마다 누적)</h2>
+<p class="lead">미상 칸은 앞으로 채워나갈 것. 매 라이브 후 한 줄씩 추가.</p>
+<div class="tbl-scroll"><table>
+<thead><tr><th>회차</th><th>날짜</th><th>시간대</th><th>플친</th><th>쇼호스트</th><th>상품구성</th><th class="num">인크리멘탈</th><th>비고</th></tr></thead>
+<tbody><tr><td>1회</td><td>4/30</td><td>야간 21시</td><td>미상</td><td>미상</td><td>미상</td><td class="num up">+635만</td><td></td></tr><tr><td>2회</td><td>5/26</td><td>야간 21시</td><td>미상</td><td>미상</td><td>미상</td><td class="num up">+837만</td><td></td></tr><tr><td>3회</td><td>6/1</td><td>야간 21시</td><td>미상</td><td>미상</td><td>미상</td><td class="num up">+825만</td><td></td></tr><tr><td>4회</td><td>6/8</td><td>야간 21시</td><td>다음날(실수)</td><td>미상</td><td>미상</td><td class="num up">+733만</td><td>루피 대량취소 517만 제외 정정</td></tr><tr class="hl"><td>5회</td><td>6/15</td><td>오전 10~11시</td><td>당일 발송</td><td>미상</td><td>미상</td><td class="num up">+2,484만</td><td>오전+플친 동시 변경→교란</td></tr></tbody></table></div>
+
+<h2>다음 테스트 제안 (6/15 교란 풀기)</h2>
+<div class="tbl-scroll"><table>
+<thead><tr><th>순서</th><th>조건</th><th>고정할 것</th><th>알 수 있는 것</th></tr></thead>
+<tbody>
+<tr><td>다음 회차</td><td><b>오전 라이브 + 플친 안 보냄</b></td><td>호스트·상품 가능한 동일</td><td>시간대(오전) 단독 효과 — 6/15가 오전 덕인지 확인</td></tr>
+<tr><td>그 다음</td><td><b>야간 라이브 + 플친 보냄</b></td><td>호스트·상품 동일</td><td>플친 단독 효과 — 6/15가 플친 덕인지 확인</td></tr>
+<tr><td>이후</td><td>가장 좋았던 조건 고정 후 호스트/상품 1개씩 변경</td><td>시간·플친 고정</td><td>호스트·상품 효과</td></tr>
+</tbody></table></div>
+
+<h2>현재까지 잠정 관찰 (확정 아님)</h2>
+<div class="note"><ul>
+<li><b>야간 4회는 인크리멘탈 +635~837만으로 비슷한 수준.</b> 야간 안에서는 큰 차이 없었음.</li>
+<li><b>6/15(오전+플친)만 +2,484만으로 크게 높았으나, 두 변수가 겹쳐 원인 미확정.</b> 위 다음 테스트로 분리 필요.</li>
+<li>플러스스토어 노출 확대는 5회 모두 재현 — 요인과 무관하게 라이브 자체의 기본 효과로 보임.</li>
+</ul></div>
+
+<div class="next" style="margin-top:18px">
+<b>7월 토스 이벤트 주의:</b> 외부 트래픽을 인위적으로 끌어오는 회차는 동접·시청이 폭증해도 체리피커 비중이 높을 수 있음. 이 그로스해킹 실험(4요인)과는 성격이 다르므로 <b>분리해서 기록</b>하고, 트래픽 폭증 대비 인크리멘탈 매출이 안 따라오면 허수로 판단할 것.
+</div>
+
+<footer>쇼핑라이브 그로스해킹 실험 로드맵 · KPI=인크리멘탈 매출 · 회차마다 갱신</footer>
+</div>
+</body></html>
